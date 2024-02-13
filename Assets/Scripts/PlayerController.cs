@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private const string HORIZONTAL_INPUT = "Horizontal";
     private const string VERTICAL_INPUT = "Vertical";
 
+    private PlayerAnimationController animationController;
+
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform body;
@@ -16,6 +18,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 movementDirection;
 
     private bool isMove;
+    private void Awake()
+    {
+        animationController = GetComponentInChildren<PlayerAnimationController>();
+    }
     void Start()
     {
         
@@ -37,8 +43,11 @@ public class PlayerController : MonoBehaviour
         if (isMove)
         {
             transform.Translate(movementDirection * movementSpeed * Time.deltaTime);
+            animationController.RunAnimation(true);
             HandleRotation();
         }
+        else
+            animationController.RunAnimation(false);
 
     }
 
