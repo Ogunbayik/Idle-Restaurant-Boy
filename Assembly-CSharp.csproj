@@ -53,14 +53,15 @@
     <UnityVersion>2020.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Bench.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
+    <Compile Include="Assets\Scripts\EnterPoint.cs" />
+    <Compile Include="Assets\Scripts\Customer\CustomerCheckTable.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Customer\CustomerMovement.cs" />
     <Compile Include="Assets\Scripts\Customer\CustomerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Table.cs" />
-    <Compile Include="Assets\Scripts\Customer\CustomerCheckTable.cs" />
-    <Compile Include="Assets\Scripts\Bench.cs" />
-    <Compile Include="Assets\Scripts\EnterPoint.cs" />
+    <Compile Include="Assets\Scripts\OutsidePoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

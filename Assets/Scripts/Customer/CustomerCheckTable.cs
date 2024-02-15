@@ -12,6 +12,20 @@ public class CustomerCheckTable : MonoBehaviour
     {
         emptyTable = null;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        var enterPoint = other.gameObject.GetComponent<EnterPoint>();
+
+        if (enterPoint)
+            CheckEmptyTable();
+
+        var table = other.gameObject.GetComponent<Table>();
+
+        if(table)
+        {
+            randomPosition = table.GetRandomBench().GetRandomSitPosition();
+        }
+    }
     private void CheckEmptyTable()
     {
         var allTables = FindObjectsOfType<Table>();
@@ -33,28 +47,12 @@ public class CustomerCheckTable : MonoBehaviour
 
     }
 
-    public Table GetEmptyTable()
-    {
-        return emptyTable;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        var enterPoint = other.gameObject.GetComponent<EnterPoint>();
-
-        if (enterPoint)
-            CheckEmptyTable();
-
-        var table = other.gameObject.GetComponent<Table>();
-
-        if(table)
-        {
-            randomPosition = table.GetRandomBench().GetRandomSitPosition();
-        }
-    }
-
     public Transform GetSitPosition()
     {
         return randomPosition;
+    }
+    public Table GetEmptyTable()
+    {
+        return emptyTable;
     }
 }
