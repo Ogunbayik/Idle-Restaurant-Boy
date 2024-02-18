@@ -22,6 +22,7 @@ public class CustomerMovement : MonoBehaviour
     private States currentState;
 
     private CustomerCheckTable checkTable;
+    private CustomerUI customerUI;
     private NavMeshAgent agent;
 
     private bool isWalk;
@@ -38,6 +39,7 @@ public class CustomerMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         checkTable = GetComponent<CustomerCheckTable>();
+        customerUI = GetComponent<CustomerUI>();
 
         enterPoint = FindObjectOfType<EnterPoint>().transform;
         outsidePoint = FindObjectOfType<OutsidePoint>().transform;
@@ -61,6 +63,7 @@ public class CustomerMovement : MonoBehaviour
                 CheckingEmptyTable();
                 break;
             case States.Sit:
+                customerUI.SetActivate(CustomerUI.Mood.Wait, true);
                 Sitting();
                 break;
             case States.StandUp:
@@ -69,12 +72,14 @@ public class CustomerMovement : MonoBehaviour
 
                 if (correctRecipe)
                 {
+                    customerUI.SetActivate(CustomerUI.Mood.Happy, true);
                     Debug.Log("Earn Money");
                     currentState = States.GoingOutside;
                     desiredPosition = outsidePoint;
                 }
                 else
                 {
+                    customerUI.SetActivate(CustomerUI.Mood.Angry, true);
                     Debug.Log("Lose Money");
                     currentState = States.GoingOutside;
                     desiredPosition = outsidePoint;
@@ -136,7 +141,7 @@ public class CustomerMovement : MonoBehaviour
         {
             Debug.Log("You cant bring food!");
             currentState = States.StandUp;
-            correctRecipe = true;
+            correctRecipe = false;
         }
     }
 
