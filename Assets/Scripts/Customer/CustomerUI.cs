@@ -61,6 +61,7 @@ public class CustomerUI : MonoBehaviour
     {
         if (isActive)
         {
+            image.transform.rotation = Quaternion.Euler(45f, 0f, 0f);
             activateTimer -= Time.deltaTime;
 
             if (activateTimer <= 0)
